@@ -36,9 +36,15 @@ h1, h2 {
     font-size: 56px;
     margin-bottom: 20px;
   }
+  h1 span {
+    border-bottom:1px solid #fff;
+  }
 
   h2 {
     margin-bottom: 60px;
+  }
+  h2 span {
+    border-bottom:1px solid #fff;
   }
 }
 .form-control {
