@@ -1,3 +1,5 @@
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" type="text/css" media="all" />
 <div class="topic-index-wrapper">
   <div class="container">
     <% @topics.each do |topic| %>
@@ -8,7 +10,16 @@
               <%= topic.user.name %>
             </h2>
             <%= image_tag topic.image.url %>
-            <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
+          <% if !topic.favorite_users.include?(current_user) %>  
+            <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
+            <i class="far fa-heart favorite-btn"></i>   
+            <% end %>
+           <% else %>
+            <%= link_to favorites_path(topic_id: topic.id), method: :delete do %>
+              <i class="fas fa-heart unfavorite-btn" ></i>
+            <% end %>
+          <% end %>  
+            <%= topic.favorite_users.count %>
             <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
             <p class="topic-text">
               <%= topic.description %>
